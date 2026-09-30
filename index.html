@@ -6,7 +6,6 @@
 
   <title>CFA学生チーム 応募者情報登録</title>
 
-  <!-- LIFF SDK -->
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
   <style>
@@ -128,13 +127,6 @@
       line-height: 1.6;
     }
 
-    .help {
-      margin-top: 6px;
-      font-size: 12px;
-      line-height: 1.5;
-      color: #888;
-    }
-
     button {
       width: 100%;
       margin-top: 8px;
@@ -158,7 +150,6 @@
 <body>
 
   <div class="container">
-
     <div class="card">
 
       <h1>CFA学生チーム<br>応募者情報登録</h1>
@@ -175,7 +166,6 @@
 
       <form id="recruitForm">
 
-        <!-- 氏名 -->
         <div class="form-group">
           <label for="name">
             氏名
@@ -190,7 +180,6 @@
           >
         </div>
 
-        <!-- ふりがな -->
         <div class="form-group">
           <label for="furigana">
             ふりがな
@@ -205,7 +194,6 @@
           >
         </div>
 
-        <!-- 学校名 -->
         <div class="form-group">
           <label for="school">
             学校名
@@ -220,71 +208,29 @@
           >
         </div>
 
-        <!-- 学年 -->
         <div class="form-group">
-
           <label for="grade">
             学年
             <span class="required">必須</span>
           </label>
 
           <select id="grade" required>
-
-            <option value="">
-              選択してください
-            </option>
-
-            <option value="高校1年">
-              高校1年
-            </option>
-
-            <option value="高校2年">
-              高校2年
-            </option>
-
-            <option value="高校3年">
-              高校3年
-            </option>
-
-            <option value="大学1年">
-              大学1年
-            </option>
-
-            <option value="大学2年">
-              大学2年
-            </option>
-
-            <option value="大学3年">
-              大学3年
-            </option>
-
-            <option value="大学4年">
-              大学4年
-            </option>
-
-            <option value="大学5年以上">
-              大学5年以上
-            </option>
-
-            <option value="大学院">
-              大学院
-            </option>
-
-            <option value="専門学校">
-              専門学校
-            </option>
-
-            <option value="その他">
-              その他
-            </option>
-
+            <option value="">選択してください</option>
+            <option value="高校1年">高校1年</option>
+            <option value="高校2年">高校2年</option>
+            <option value="高校3年">高校3年</option>
+            <option value="大学1年">大学1年</option>
+            <option value="大学2年">大学2年</option>
+            <option value="大学3年">大学3年</option>
+            <option value="大学4年">大学4年</option>
+            <option value="大学5年以上">大学5年以上</option>
+            <option value="大学院">大学院</option>
+            <option value="専門学校">専門学校</option>
+            <option value="その他">その他</option>
           </select>
-
         </div>
 
-        <!-- メール -->
         <div class="form-group">
-
           <label for="email">
             メールアドレス
             <span class="required">必須</span>
@@ -296,12 +242,9 @@
             placeholder="example@example.com"
             required
           >
-
         </div>
 
-        <!-- 電話番号 -->
         <div class="form-group">
-
           <label for="phone">
             電話番号
           </label>
@@ -311,66 +254,29 @@
             id="phone"
             placeholder="09012345678"
           >
-
         </div>
 
-        <!-- 応募媒体 -->
         <div class="form-group">
-
           <label for="source">
             応募媒体
             <span class="required">必須</span>
           </label>
 
           <select id="source" required>
-
-            <option value="">
-              選択してください
-            </option>
-
-            <option value="Activo">
-              Activo
-            </option>
-
-            <option value="Instagram">
-              Instagram
-            </option>
-
-            <option value="X">
-              X
-            </option>
-
-            <option value="TikTok">
-              TikTok
-            </option>
-
-            <option value="大学・学校">
-              大学・学校
-            </option>
-
-            <option value="知人・友人の紹介">
-              知人・友人の紹介
-            </option>
-
-            <option value="CFAメンバーの紹介">
-              CFAメンバーの紹介
-            </option>
-
-            <option value="検索">
-              検索
-            </option>
-
-            <option value="その他">
-              その他
-            </option>
-
+            <option value="">選択してください</option>
+            <option value="Activo">Activo</option>
+            <option value="Instagram">Instagram</option>
+            <option value="X">X</option>
+            <option value="TikTok">TikTok</option>
+            <option value="大学・学校">大学・学校</option>
+            <option value="知人・友人の紹介">知人・友人の紹介</option>
+            <option value="CFAメンバーの紹介">CFAメンバーの紹介</option>
+            <option value="検索">検索</option>
+            <option value="その他">その他</option>
           </select>
-
         </div>
 
-        <!-- CFAを知ったきっかけ -->
         <div class="form-group">
-
           <label for="trigger">
             CFAを知ったきっかけ
           </label>
@@ -379,53 +285,25 @@
             id="trigger"
             placeholder="例：Activoで募集記事を見た、友人から紹介された など"
           ></textarea>
-
         </div>
 
-        <!-- 興味のある活動 -->
         <div class="form-group">
-
           <label for="interest">
             興味のある活動
           </label>
 
           <select id="interest">
-
-            <option value="">
-              選択してください
-            </option>
-
-            <option value="パークリーダー">
-              パークリーダー
-            </option>
-
-            <option value="irodori">
-              irodori
-            </option>
-
-            <option value="hidamari">
-              hidamari
-            </option>
-
-            <option value="CFAKids">
-              CFAKids
-            </option>
-
-            <option value="特に決まっていない">
-              特に決まっていない
-            </option>
-
-            <option value="その他">
-              その他
-            </option>
-
+            <option value="">選択してください</option>
+            <option value="パークリーダー">パークリーダー</option>
+            <option value="irodori">irodori</option>
+            <option value="hidamari">hidamari</option>
+            <option value="CFAKids">CFAKids</option>
+            <option value="特に決まっていない">特に決まっていない</option>
+            <option value="その他">その他</option>
           </select>
-
         </div>
 
-        <!-- 備考 -->
         <div class="form-group">
-
           <label for="note">
             その他、事前に伝えておきたいこと
           </label>
@@ -434,7 +312,6 @@
             id="note"
             placeholder="任意"
           ></textarea>
-
         </div>
 
         <button
@@ -447,7 +324,6 @@
       </form>
 
     </div>
-
   </div>
 
   <script>
@@ -491,27 +367,13 @@
           liffId: LIFF_ID
         });
 
-
-        /*
-        LINEログインされていない場合
-        */
-
         if (!liff.isLoggedIn()) {
-
           liff.login();
-
           return;
-
         }
-
-
-        /*
-        LINEプロフィール取得
-        */
 
         const profile =
           await liff.getProfile();
-
 
         lineUserId =
           profile.userId || "";
@@ -519,11 +381,8 @@
         lineDisplayName =
           profile.displayName || "";
 
-
         status.textContent = "";
-
         status.className = "";
-
 
       } catch (error) {
 
@@ -532,17 +391,12 @@
           error
         );
 
-
         status.textContent =
-          "LINEとの接続に失敗しました。" +
-          "ページを開き直して、もう一度お試しください。";
-
+          "LINEとの接続に失敗しました。ページを開き直して、もう一度お試しください。";
 
         status.className =
           "error";
-
       }
-
     }
 
 
@@ -560,16 +414,11 @@
 
           event.preventDefault();
 
-
           const button =
-            document.getElementById(
-              "submitButton"
-            );
+            document.getElementById("submitButton");
 
           const status =
-            document.getElementById(
-              "status"
-            );
+            document.getElementById("status");
 
 
           /*
@@ -579,26 +428,22 @@
           if (!lineUserId) {
 
             status.textContent =
-              "LINEユーザー情報を取得できませんでした。" +
-              "LINEからフォームを開き直してください。";
+              "LINEユーザー情報を取得できませんでした。LINEからフォームを開き直してください。";
 
             status.className =
               "error";
 
             return;
-
           }
 
 
           /*
-          ボタンを送信中に変更
+          送信中表示
           */
 
           button.disabled = true;
-
           button.textContent =
             "登録しています...";
-
 
           status.textContent =
             "登録処理中です...";
@@ -607,87 +452,106 @@
 
 
           /*
-          GASに送るデータ
+          =====================================
+          GASへ送るデータを作成
+          =====================================
           */
 
-          const data = {
+          const formData =
+            new URLSearchParams();
 
-            lineUserId:
-              lineUserId,
+          formData.append(
+            "lineUserId",
+            lineUserId
+          );
 
-            lineDisplayName:
-              lineDisplayName,
+          formData.append(
+            "lineDisplayName",
+            lineDisplayName
+          );
 
-            name:
-              document
-                .getElementById("name")
-                .value
-                .trim(),
+          formData.append(
+            "name",
+            document
+              .getElementById("name")
+              .value
+              .trim()
+          );
 
-            furigana:
-              document
-                .getElementById("furigana")
-                .value
-                .trim(),
+          formData.append(
+            "furigana",
+            document
+              .getElementById("furigana")
+              .value
+              .trim()
+          );
 
-            school:
-              document
-                .getElementById("school")
-                .value
-                .trim(),
+          formData.append(
+            "school",
+            document
+              .getElementById("school")
+              .value
+              .trim()
+          );
 
-            grade:
-              document
-                .getElementById("grade")
-                .value,
+          formData.append(
+            "grade",
+            document
+              .getElementById("grade")
+              .value
+          );
 
-            email:
-              document
-                .getElementById("email")
-                .value
-                .trim(),
+          formData.append(
+            "email",
+            document
+              .getElementById("email")
+              .value
+              .trim()
+          );
 
-            phone:
-              document
-                .getElementById("phone")
-                .value
-                .trim(),
+          formData.append(
+            "phone",
+            document
+              .getElementById("phone")
+              .value
+              .trim()
+          );
 
-            source:
-              document
-                .getElementById("source")
-                .value,
+          formData.append(
+            "source",
+            document
+              .getElementById("source")
+              .value
+          );
 
-            trigger:
-              document
-                .getElementById("trigger")
-                .value
-                .trim(),
+          formData.append(
+            "trigger",
+            document
+              .getElementById("trigger")
+              .value
+              .trim()
+          );
 
-            interest:
-              document
-                .getElementById("interest")
-                .value,
+          formData.append(
+            "interest",
+            document
+              .getElementById("interest")
+              .value
+          );
 
-            note:
-              document
-                .getElementById("note")
-                .value
-                .trim()
-
-          };
+          formData.append(
+            "note",
+            document
+              .getElementById("note")
+              .value
+              .trim()
+          );
 
 
           /*
-          =================================
+          =====================================
           GASへ送信
-          =================================
-
-          no-corsで送信することで、
-          Apps Script側からHTML応答が
-          返ってきた際の
-          Unexpected token '<'
-          を回避します。
+          =====================================
           */
 
           try {
@@ -695,43 +559,29 @@
             await fetch(
               GAS_URL,
               {
-
                 method: "POST",
-
                 mode: "no-cors",
-
-                headers: {
-
-                  "Content-Type":
-                    "text/plain;charset=utf-8"
-
-                },
-
-                body:
-                  JSON.stringify(data)
-
+                body: formData
               }
             );
 
 
             /*
-            送信成功
+            登録完了表示
             */
 
             status.textContent =
               "登録が完了しました。ありがとうございます！";
 
-
             status.className =
               "success";
-
 
             button.textContent =
               "登録完了";
 
 
             /*
-            登録後にフォームを変更できないようにする
+            登録後は入力欄を無効化
             */
 
             const formElements =
@@ -741,12 +591,9 @@
                 "#recruitForm textarea"
               );
 
-
             formElements.forEach(
               element => {
-
                 element.disabled = true;
-
               }
             );
 
@@ -758,31 +605,25 @@
               error
             );
 
-
             status.textContent =
-              "登録に失敗しました。" +
-              "通信環境をご確認のうえ、もう一度お試しください。";
-
+              "登録に失敗しました：" +
+              error.message;
 
             status.className =
               "error";
 
-
             button.disabled = false;
-
 
             button.textContent =
               "登録する";
-
           }
-
         }
       );
 
 
     /*
     =====================================
-    ページ読み込み時に実行
+    ページ読み込み時
     =====================================
     */
 
