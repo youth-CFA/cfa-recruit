@@ -25,7 +25,6 @@
         "Yu Gothic",
         Meiryo,
         sans-serif;
-
       background: #f5f6f7;
       color: #222;
     }
@@ -37,10 +36,10 @@
     }
 
     .card {
-      background: #ffffff;
+      background: #fff;
       border-radius: 16px;
       padding: 24px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
     h1 {
@@ -54,6 +53,12 @@
       font-size: 14px;
       line-height: 1.8;
       color: #666;
+    }
+
+    .section-title {
+      margin: 32px 0 12px;
+      font-size: 18px;
+      font-weight: 700;
     }
 
     #status {
@@ -127,9 +132,37 @@
       line-height: 1.6;
     }
 
+    .guidance-box {
+      margin-bottom: 10px;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .guidance-box label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 0;
+      font-weight: 500;
+      line-height: 1.6;
+      cursor: pointer;
+    }
+
+    .guidance-box input[type="radio"] {
+      width: auto;
+      margin-top: 4px;
+    }
+
+    #guidanceLoading {
+      font-size: 14px;
+      color: #666;
+    }
+
     button {
       width: 100%;
-      margin-top: 8px;
+      margin-top: 12px;
       padding: 15px;
       border: none;
       border-radius: 10px;
@@ -156,8 +189,7 @@
 
       <p class="description">
         CFA学生チームへの応募ありがとうございます。<br>
-        今後のガイダンス案内やご連絡のため、
-        以下の情報をご登録ください。
+        基本情報をご登録のうえ、参加可能なガイダンス日程を選択してください。
       </p>
 
       <div id="status">
@@ -171,13 +203,7 @@
             氏名
             <span class="required">必須</span>
           </label>
-
-          <input
-            type="text"
-            id="name"
-            placeholder="例：山田 太郎"
-            required
-          >
+          <input type="text" id="name" required>
         </div>
 
         <div class="form-group">
@@ -185,13 +211,7 @@
             ふりがな
             <span class="required">必須</span>
           </label>
-
-          <input
-            type="text"
-            id="furigana"
-            placeholder="例：やまだ たろう"
-            required
-          >
+          <input type="text" id="furigana" required>
         </div>
 
         <div class="form-group">
@@ -199,13 +219,7 @@
             学校名
             <span class="required">必須</span>
           </label>
-
-          <input
-            type="text"
-            id="school"
-            placeholder="例：國學院大學"
-            required
-          >
+          <input type="text" id="school" required>
         </div>
 
         <div class="form-group">
@@ -235,25 +249,14 @@
             メールアドレス
             <span class="required">必須</span>
           </label>
-
-          <input
-            type="email"
-            id="email"
-            placeholder="example@example.com"
-            required
-          >
+          <input type="email" id="email" required>
         </div>
 
         <div class="form-group">
           <label for="phone">
             電話番号
           </label>
-
-          <input
-            type="tel"
-            id="phone"
-            placeholder="09012345678"
-          >
+          <input type="tel" id="phone">
         </div>
 
         <div class="form-group">
@@ -280,11 +283,7 @@
           <label for="trigger">
             CFAを知ったきっかけ
           </label>
-
-          <textarea
-            id="trigger"
-            placeholder="例：Activoで募集記事を見た、友人から紹介された など"
-          ></textarea>
+          <textarea id="trigger"></textarea>
         </div>
 
         <div class="form-group">
@@ -307,11 +306,32 @@
           <label for="note">
             その他、事前に伝えておきたいこと
           </label>
+          <textarea id="note"></textarea>
+        </div>
 
-          <textarea
-            id="note"
-            placeholder="任意"
-          ></textarea>
+        <div class="section-title">
+          ガイダンス日程
+        </div>
+
+        <p class="description">
+          参加可能な日程を1つ選択してください。
+        </p>
+
+        <div id="guidanceLoading">
+          ガイダンス日程を読み込んでいます...
+        </div>
+
+        <div id="guidanceList"></div>
+
+        <div class="guidance-box">
+          <label>
+            <input
+              type="radio"
+              name="guidance"
+              value="日程が合わない"
+            >
+            日程が合わない
+          </label>
         </div>
 
         <button
@@ -328,33 +348,14 @@
 
   <script>
 
-    /*
-    =====================================
-    設定
-    =====================================
-    */
-
     const LIFF_ID = "2011801358-vOjwtQyG";
 
     const GAS_URL =
       "https://script.google.com/macros/s/AKfycbyWkOuf2nAqDg5u0iERcTVfnC6-HAVFBsncT3cJDWZHWSU4ZrEsQW3hsWvm1M_el1L2aw/exec";
 
-
-    /*
-    =====================================
-    LINEユーザー情報
-    =====================================
-    */
-
     let lineUserId = "";
     let lineDisplayName = "";
 
-
-    /*
-    =====================================
-    LIFF初期化
-    =====================================
-    */
 
     async function initializeLiff() {
 
@@ -386,13 +387,10 @@
 
       } catch (error) {
 
-        console.error(
-          "LIFF初期化エラー：",
-          error
-        );
+        console.error(error);
 
         status.textContent =
-          "LINEとの接続に失敗しました。ページを開き直して、もう一度お試しください。";
+          "LINEとの接続に失敗しました。";
 
         status.className =
           "error";
@@ -400,11 +398,76 @@
     }
 
 
-    /*
-    =====================================
-    フォーム送信
-    =====================================
-    */
+    async function loadGuidanceDates() {
+
+      const loading =
+        document.getElementById("guidanceLoading");
+
+      const list =
+        document.getElementById("guidanceList");
+
+      try {
+
+        const response =
+          await fetch(GAS_URL);
+
+        const schedules =
+          await response.json();
+
+        loading.style.display = "none";
+
+        if (!Array.isArray(schedules)) {
+          throw new Error("日程データを取得できませんでした。");
+        }
+
+        schedules.forEach(schedule => {
+
+          const wrapper =
+            document.createElement("div");
+
+          wrapper.className =
+            "guidance-box";
+
+          const label =
+            document.createElement("label");
+
+          const radio =
+            document.createElement("input");
+
+          radio.type =
+            "radio";
+
+          radio.name =
+            "guidance";
+
+          radio.value =
+            schedule.display;
+
+          const text =
+            document.createElement("span");
+
+          text.textContent =
+            schedule.display;
+
+          label.appendChild(radio);
+          label.appendChild(text);
+
+          wrapper.appendChild(label);
+
+          list.appendChild(wrapper);
+
+        });
+
+      } catch (error) {
+
+        console.error(error);
+
+        loading.textContent =
+          "ガイダンス日程の読み込みに失敗しました。";
+
+      }
+    }
+
 
     document
       .getElementById("recruitForm")
@@ -420,15 +483,10 @@
           const status =
             document.getElementById("status");
 
-
-          /*
-          LINEユーザーID確認
-          */
-
           if (!lineUserId) {
 
             status.textContent =
-              "LINEユーザー情報を取得できませんでした。LINEからフォームを開き直してください。";
+              "LINEユーザー情報を取得できませんでした。";
 
             status.className =
               "error";
@@ -436,26 +494,25 @@
             return;
           }
 
+          const guidance =
+            document.querySelector(
+              'input[name="guidance"]:checked'
+            );
 
-          /*
-          送信中表示
-          */
+          if (!guidance) {
+
+            status.textContent =
+              "参加するガイダンス日程を選択してください。";
+
+            status.className =
+              "error";
+
+            return;
+          }
 
           button.disabled = true;
           button.textContent =
             "登録しています...";
-
-          status.textContent =
-            "登録処理中です...";
-
-          status.className = "";
-
-
-          /*
-          =====================================
-          GASへ送るデータを作成
-          =====================================
-          */
 
           const formData =
             new URLSearchParams();
@@ -472,87 +529,58 @@
 
           formData.append(
             "name",
-            document
-              .getElementById("name")
-              .value
-              .trim()
+            document.getElementById("name").value.trim()
           );
 
           formData.append(
             "furigana",
-            document
-              .getElementById("furigana")
-              .value
-              .trim()
+            document.getElementById("furigana").value.trim()
           );
 
           formData.append(
             "school",
-            document
-              .getElementById("school")
-              .value
-              .trim()
+            document.getElementById("school").value.trim()
           );
 
           formData.append(
             "grade",
-            document
-              .getElementById("grade")
-              .value
+            document.getElementById("grade").value
           );
 
           formData.append(
             "email",
-            document
-              .getElementById("email")
-              .value
-              .trim()
+            document.getElementById("email").value.trim()
           );
 
           formData.append(
             "phone",
-            document
-              .getElementById("phone")
-              .value
-              .trim()
+            document.getElementById("phone").value.trim()
           );
 
           formData.append(
             "source",
-            document
-              .getElementById("source")
-              .value
+            document.getElementById("source").value
           );
 
           formData.append(
             "trigger",
-            document
-              .getElementById("trigger")
-              .value
-              .trim()
+            document.getElementById("trigger").value.trim()
           );
 
           formData.append(
             "interest",
-            document
-              .getElementById("interest")
-              .value
+            document.getElementById("interest").value
           );
 
           formData.append(
             "note",
-            document
-              .getElementById("note")
-              .value
-              .trim()
+            document.getElementById("note").value.trim()
           );
 
-
-          /*
-          =====================================
-          GASへ送信
-          =====================================
-          */
+          formData.append(
+            "guidance",
+            guidance.value
+          );
 
           try {
 
@@ -565,13 +593,8 @@
               }
             );
 
-
-            /*
-            登録完了表示
-            */
-
             status.textContent =
-              "登録が完了しました。ありがとうございます！";
+              "登録とガイダンス予約が完了しました。ありがとうございます！";
 
             status.className =
               "success";
@@ -579,31 +602,9 @@
             button.textContent =
               "登録完了";
 
-
-            /*
-            登録後は入力欄を無効化
-            */
-
-            const formElements =
-              document.querySelectorAll(
-                "#recruitForm input, " +
-                "#recruitForm select, " +
-                "#recruitForm textarea"
-              );
-
-            formElements.forEach(
-              element => {
-                element.disabled = true;
-              }
-            );
-
-
           } catch (error) {
 
-            console.error(
-              "送信エラー：",
-              error
-            );
+            console.error(error);
 
             status.textContent =
               "登録に失敗しました：" +
@@ -621,13 +622,8 @@
       );
 
 
-    /*
-    =====================================
-    ページ読み込み時
-    =====================================
-    */
-
     initializeLiff();
+    loadGuidanceDates();
 
   </script>
 
